@@ -16,7 +16,7 @@ Weight : <input type="number" id="weight" name="w"> <br>
 Height : <input type="number" id="height" name="h">
  <br> <br>
   
-  <input type="button" onclick="BMICalcul()" value="AM I FAT?">
+  <input type="button" onclick="BMICalcul()" value="Calculate">
 </form>
 <div id="result"></div>
 
@@ -27,22 +27,23 @@ var w = document.getElementById('weight').value
 var h = document.getElementById('height').value
 var BMI = w/((h*10**-2)**2)
 
-document.getElementById("result").innerHTML = BMI.toFixed(1)
+result = BMI.toFixed(1)
 if (BMI < 16) {
-  document.getElementById("result").innerHTML = "Severely underweight, your health is at risk"
+  result = " Severely underweight, your health is at risk"
 } else if (BMI >= 16 && BMI <= 18.4) {
-  document.getElementById("result").innerHTML = "underweight"
+  result = BMI + " underweight"
   }
 else if (BMI >= 18.5 && BMI <= 24.9) {
-  document.getElementById("result").innerHTML = "Normal weight"
+  result = " normal weight"
   }
 else if (BMI >= 25 && BMI <= 29.9) {
-  document.getElementById("result").innerHTML = "overweight"
+  result = " overweight"
   }
 else if (BMI >= 30) {
-  document.getElementById("result").innerHTML = "Obese, your health is at risk"
+  result = " obese, your health is at risk"
   }
-  
+
+document.getElementById("result").innerHTML = "Your BMI is equal to " + BMI.toFixed(1) + ", which means you are " + result
 }
 </script>
 
