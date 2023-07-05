@@ -10,11 +10,21 @@
 </head>
 
 <body> 
+<h1> BMI Calculator </h1>
 <form id="userinfo">
-To know your BMI, please follow the instructions <br>
+To know your BMI, please fill the fields :<br> <br>
 Weight : <input type="number" id="weight" name="w"> <br>
 Height : <input type="number" id="height" name="h">
  <br> <br>
+
+Metric system  
+<label class="switch">
+  <input type="checkbox" id="system" onclick=>
+  <span class="slider"></span>
+</label>
+ Imperial system
+<br> <br>
+  
   
   <input type="button" onclick="BMICalcul()" value="Calculate">
 </form>
