@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>BMI Calculator</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body> 
+<form id="userinfo">
+To know your BMI, please follow the instructions <br>
+Weight : <input type="number" id="weight" name="w"> <br>
+Height : <input type="number" id="height" name="h">
+ <br> <br>
+  
+  <input type="button" onclick="BMICalcul()" value="AM I FAT?">
+</form>
+<div id="result"></div>
+
+<script>
+function BMICalcul() {
+  
+var w = document.getElementById('weight').value
+var h = document.getElementById('height').value
+var BMI = w/((h*10**-2)**2)
+document.getElementById("result").innerHTML = BMI.toFixed(1)
+
+  
+}
+</script>
+
+
+
+
+
+
+</body>
+
+</html>
