@@ -26,8 +26,22 @@ function BMICalcul() {
 var w = document.getElementById('weight').value
 var h = document.getElementById('height').value
 var BMI = w/((h*10**-2)**2)
-document.getElementById("result").innerHTML = BMI.toFixed(1)
 
+document.getElementById("result").innerHTML = BMI.toFixed(1)
+if (BMI < 16) {
+  document.getElementById("result").innerHTML = "Severely underweight, your health is at risk"
+} else if (BMI >= 16 && BMI <= 18.4) {
+  document.getElementById("result").innerHTML = "underweight"
+  }
+else if (BMI >= 18.5 && BMI <= 24.9) {
+  document.getElementById("result").innerHTML = "Normal weight"
+  }
+else if (BMI >= 25 && BMI <= 29.9) {
+  document.getElementById("result").innerHTML = "overweight"
+  }
+else if (BMI >= 30) {
+  document.getElementById("result").innerHTML = "Obese, your health is at risk"
+  }
   
 }
 </script>
