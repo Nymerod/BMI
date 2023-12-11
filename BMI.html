@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BMI Calculator</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <div class="container mt-6">
+  <div class="container mt-5">
+    <h1 class="text-center">BMI Calculator</h1>
+
+    <!-- Metric system form -->
+    <div id="metricForm">
+      <form id="metricUserInfo">
+        <p>To know your BMI, please fill in the fields:</p>
+        <div class="form-group">
+          <label for="weight">Weight (kg):</label>
+          <input type="number" class="form-control" id="metricWeight" name="w">
+        </div>
+        <div class="form-group">
+          <label for="height">Height (cm):</label>
+          <input type="number" class="form-control" id="metricHeight" name="h">
+        </div>
+        <button type="button" class="btn btn-primary" onclick="calculateMetricBMI()">Calculate</button>
+      </form>
+    </div>
+
+    <!-- Imperial system form (initially hidden) -->
+    <div id="imperialForm" style="display: none;">
+      <form id="imperialUserInfo">
+        <p>To know your BMI, please fill in the fields:</p>
+        <div class="form-group">
+          <label for="weight">Weight (lbs):</label>
+          <input type="number" class="form-control" id="imperialWeight" name="w">
+        </div>
+        <div class="form-group">
+          <label for="height">Height (ft/in):</label>
+          <input type="number" class="form-control" id="imperialFeet" name="ft" placeholder="feet">
+          <input type="number" class="form-control" id="imperialInches" name="in" placeholder="inches">
+        </div>
+        <button type="button" class="btn btn-primary" onclick="calculateImperialBMI()">Calculate</button>
+      </form>
+    </div>
+
+    <div id="result" class="mt-4"></div>
+    <div class="mt-3">
+      <button type="button" class="btn btn-secondary" onclick="showMetricForm()">Metric System</button>
+      <button type="button" class="btn btn-secondary" onclick="showImperialForm()">Imperial System</button>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    function calculateMetricBMI() {
+      var w = parseFloat(document.getElementById('metricWeight').value);
+      var h = parseFloat(document.getElementById('metricHeight').value);
+      var BMI = w / ((h / 100) * (h / 100));
+      displayResult(BMI);
+    }
+
+    function calculateImperialBMI() {
+      var w = parseFloat(document.getElementById('imperialWeight').value);
+      var feet = parseFloat(document.getElementById('imperialFeet').value);
+      var inches = parseFloat(document.getElementById('imperialInches').value);
+      w *= 0.453592; // Convert lbs to kg
+      var heightInCm = (feet * 30.48) + (inches * 2.54); // Convert feet and inches to cm
+      var BMI = w / ((heightInCm / 100) * (heightInCm / 100));
+      displayResult(BMI);
+    }
+
+    function displayResult(BMI) {
+      var result = '';
+      if (!isNaN(BMI)) {
+        if (BMI < 16) {
+          result = " Severely underweight, your health is at risk";
+        } else if (BMI >= 16 && BMI <= 18.4) {
+          result = " underweight";
+        } else if (BMI >= 18.5 && BMI <= 24.9) {
+          result = " normal weight";
+        } else if (BMI >= 25 && BMI <= 29.9) {
+          result = " overweight";
+        } else if (BMI >= 30) {
+          result = " obese, your health is at risk";
+        }
+        document.getElementById("result").innerHTML = "Your BMI is equal to " + BMI.toFixed(1) + ", which means you are " + result;
+      } else {
+        document.getElementById("result").innerHTML = "Please enter valid weight and height values.";
+      }
+    }
+
+    function showMetricForm() {
+      document.getElementById('metricForm').style.display = 'block';
+      document.getElementById('imperialForm').style.display = 'none';
+    }
+
+    function showImperialForm() {
+      document.getElementById('metricForm').style.display = 'none';
+      document.getElementById('imperialForm').style.display = 'block';
+    }
+  </script>
+   <div class="mt-6">
+    <h2 class="text-center">What is BMI?</h2>
+    <p>BMI stands for Body Mass Index, which is a measure used to estimate whether a person has a healthy body weight for their height. It's calculated using a person's weight and height, and it's a useful indicator of potential health risks.</p>
+    <p>BMI is not a direct measurement of body fat, but it can be a helpful screening tool to identify possible weight problems in adults.</p>
+    <p>The BMI categories are generally as follows:</p>
+    <ul>
+      <li>Underweight: BMI less than 18.5</li>
+      <li>Normal weight: BMI 18.5–24.9</li>
+      <li>Overweight: BMI 25–29.9</li>
+      <li>Obese: BMI 30 or greater</li>
+    </ul>
+    <p>It's essential to note that BMI is a general guideline and may not account for individual factors such as muscle mass, age, or gender.</p>
+  </div>
+</div>
+</body>
+
+</html>
+
